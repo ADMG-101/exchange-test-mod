@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "project": {
+    "id": "admg-101.exchange-test-mod",
+    "type": "mod",
+    "title": "Exchange Test Mod",
+    "summary": "A small data-only mod used to test the ADMG Exchange staging pipeline end to end.",
+    "categories": ["other"],
+    "tags": ["staging", "test"],
+    "docs": { "readme": "README.md", "issues": true }
+  },
+  "release": {
+    "artifacts": [
+      { "asset": "exchange-test-mod-{version}.zip", "kind": "mod-package" }
+    ]
+  },
+  "mod": {
+    "packages": [
+      { "asset": "exchange-test-mod-{version}.zip", "modId": "exchange-test-mod", "gameId": "emerald-expansion" }
+    ]
+  }
+}
