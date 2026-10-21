@@ -1,0 +1,56 @@
+# Checks the project the way ADMG Exchange will, on every push and pull request: the descriptor (.admg/exchange.json),
+# the licence, mod.json, and a trial package build. Runs without secrets.
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions: {}
+
+jobs:
+  check:
+    if: ${{ !github.event.repository.is_template }}
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    env:
+      # ADMG Exchange's validator, pinned by SHA-256 (the staging channel's tools release).
+      TOOLS_URL: https://github.com/ADMG-101/admg-exchange-index-staging/releases/download/tools-v0.7.0/admg-exchange-tools-0.7.0.zip
+      TOOLS_SHA256: d58478cf58b1a6c23728456d47dcae495c64d3e408fe6ebe147378f9d5df52de
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Wait for setup
+        id: setup
+        run: |
+          if grep -q "__PUBLISHER__" .admg/exchange.json; then
+            echo "::notice::This is the template's first commit; the setup workflow personalizes the repository and the next push is checked."
+            echo "pending=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Check the project
+        if: steps.setup.outputs.pending != 'true'
+        run: python3 .admg/package.py check
+
+      - name: Trial package
+        if: steps.setup.outputs.pending != 'true'
+        run: |
+          version="$(python3 -c "import json;print(json.load(open('mod/mod.json'))['version'])" 2>/dev/null || echo 0.0.0)"
+          python3 .admg/package.py build --version "$version" --out "$RUNNER_TEMP/dist"
+
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        if: steps.setup.outputs.pending != 'true'
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Validate with ADMG Exchange
+        if: steps.setup.outputs.pending != 'true'
+        run: |
+          curl -fsSL "$TOOLS_URL" -o "$RUNNER_TEMP/tools.zip"
+          echo "$TOOLS_SHA256  $RUNNER_TEMP/tools.zip" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/tools.zip" -d "$RUNNER_TEMP/tools"
+          dotnet "$RUNNER_TEMP/tools/admg-exchange-tools/admg-exchange.dll" validate .admg/exchange.json

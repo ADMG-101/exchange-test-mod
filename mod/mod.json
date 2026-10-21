@@ -1,11 +1,11 @@
 {
-  "id": "exchange-test-mod",
+  "id": "__NAME__",
   "game_id": "emerald-expansion",
-  "display_name": "Exchange Test Mod",
-  "version": "1.2.0",
-  "authors": ["ADMG-101"],
+  "display_name": "__REPO__",
+  "version": "0.1.0",
+  "authors": ["__OWNER__"],
   "minimum_recomp_version": "0.1.0",
-  "short_description": "Staging test package for ADMG Exchange.",
-  "description": "A data-only package that exercises discovery, inspection, moderation and signed publication.",
+  "short_description": "Describe your mod in one sentence.",
+  "description": "What your mod changes, and anything players should know before installing it.",
   "enabled_by_default": false
 }

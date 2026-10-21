@@ -1,0 +1,32 @@
+# Runs once, on the first push of a repository created from this template: fills in your project id, mod id, title
+# and licence holder from the repository's owner and name, and commits the result. Edit anything afterwards.
+name: setup
+
+on:
+  push:
+    branches: [main]
+
+permissions: {}
+
+jobs:
+  setup:
+    if: ${{ github.run_number == 1 && !github.event.repository.is_template }}
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write   # commit the personalized files
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Personalize
+        env:
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ github.event.repository.name }}
+        run: python3 .admg/package.py personalize --owner "$OWNER" --repo "$REPO"
+
+      - name: Commit
+        run: |
+          if git diff --quiet; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Set up the project from the ADMG Exchange template"
+          git push

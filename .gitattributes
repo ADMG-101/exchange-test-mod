@@ -1,0 +1,4 @@
+# Packages are built from these files byte for byte: keep LF line endings on every platform.
+* text=auto eol=lf
+*.png binary
+*.zip binary
