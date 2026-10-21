@@ -5,30 +5,19 @@
     "type": "mod",
     "title": "exchange-test-mod",
     "summary": "Describe your mod in one sentence.",
-    "categories": [
-      "other"
-    ],
+    "categories": ["other"],
     "tags": [],
-    "docs": {
-      "readme": "README.md",
-      "issues": true
-    }
+    "license": { "name": "MIT", "file": "LICENSE" },
+    "docs": { "readme": "README.md", "issues": true }
   },
   "release": {
     "artifacts": [
-      {
-        "asset": "exchange-test-mod-{version}.zip",
-        "kind": "mod-package"
-      }
+      { "asset": "exchange-test-mod-{version}.zip", "kind": "mod-package" }
     ]
   },
   "mod": {
     "packages": [
-      {
-        "asset": "exchange-test-mod-{version}.zip",
-        "modId": "exchange-test-mod",
-        "gameId": "emerald-expansion"
-      }
+      { "asset": "exchange-test-mod-{version}.zip", "modId": "exchange-test-mod", "gameId": "emerald-expansion" }
     ]
   }
 }
