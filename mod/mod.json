@@ -1,9 +1,9 @@
 {
-  "id": "__NAME__",
+  "id": "exchange-test-mod",
   "game_id": "emerald-expansion",
-  "display_name": "__REPO__",
+  "display_name": "exchange-test-mod",
   "version": "0.1.0",
-  "authors": ["__OWNER__"],
+  "authors": ["ADMG-101"],
   "minimum_recomp_version": "0.1.0",
   "short_description": "Describe your mod in one sentence.",
   "description": "What your mod changes, and anything players should know before installing it.",

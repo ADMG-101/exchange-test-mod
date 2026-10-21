@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "project": {
-    "id": "__PUBLISHER__.__NAME__",
+    "id": "admg-101.exchange-test-mod",
     "type": "mod",
-    "title": "__REPO__",
+    "title": "exchange-test-mod",
     "summary": "Describe your mod in one sentence.",
     "categories": ["other"],
     "tags": [],
@@ -12,12 +12,12 @@
   },
   "release": {
     "artifacts": [
-      { "asset": "__NAME__-{version}.zip", "kind": "mod-package" }
+      { "asset": "exchange-test-mod-{version}.zip", "kind": "mod-package" }
     ]
   },
   "mod": {
     "packages": [
-      { "asset": "__NAME__-{version}.zip", "modId": "__NAME__", "gameId": "emerald-expansion" }
+      { "asset": "exchange-test-mod-{version}.zip", "modId": "exchange-test-mod", "gameId": "emerald-expansion" }
     ]
   }
 }

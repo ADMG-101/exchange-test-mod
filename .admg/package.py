@@ -169,9 +169,7 @@ def check() -> tuple[dict, list[Problem]]:
                 if isinstance(value, bool) or not isinstance(value, (str, int, float)):
                     problems.append(Problem(f"members[{i}].options.{key} must be text or a number (the runtime has no true/false setting)", rel))
         manifest = ROOT / "modpack" / "modpack.json"
-        if not problems and (not manifest.is_file() or manifest.read_bytes().replace(b"
-", b"
-") != modpack_manifest(descriptor)):
+        if not problems and (not manifest.is_file() or manifest.read_bytes().replace(b"\r\n", b"\n") != modpack_manifest(descriptor)):
             problems.append(Problem("modpack/modpack.json is missing or differs from the pins in .admg/exchange.json: "
                                     "run 'python3 .admg/package.py sync' and commit the result", "modpack/modpack.json"))
     return descriptor, problems
