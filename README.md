@@ -1,4 +1,4 @@
-# __REPO__
+# exchange-test-mod
 
 A mod for Pokémon Emerald Expansion on ADMG-101, published through ADMG Exchange.
 
