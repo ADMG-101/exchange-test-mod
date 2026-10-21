@@ -1,22 +1,23 @@
 {
   "schema": 1,
   "project": {
-    "id": "admg-101.exchange-test-mod",
+    "id": "__PUBLISHER__.__NAME__",
     "type": "mod",
-    "title": "Exchange Test Mod",
-    "summary": "A small data-only mod used to test the ADMG Exchange staging pipeline end to end.",
+    "title": "__REPO__",
+    "summary": "Describe your mod in one sentence.",
     "categories": ["other"],
-    "tags": ["staging", "test"],
+    "tags": [],
+    "license": { "name": "MIT", "file": "LICENSE" },
     "docs": { "readme": "README.md", "issues": true }
   },
   "release": {
     "artifacts": [
-      { "asset": "exchange-test-mod-{version}.zip", "kind": "mod-package" }
+      { "asset": "__NAME__-{version}.zip", "kind": "mod-package" }
     ]
   },
   "mod": {
     "packages": [
-      { "asset": "exchange-test-mod-{version}.zip", "modId": "exchange-test-mod", "gameId": "emerald-expansion" }
+      { "asset": "__NAME__-{version}.zip", "modId": "__NAME__", "gameId": "emerald-expansion" }
     ]
   }
 }
