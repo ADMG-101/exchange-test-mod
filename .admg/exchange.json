@@ -2,7 +2,7 @@
   "schema": 1,
   "project": {
     "id": "admg-101.exchange-test-mod",
-    "type": "mod",
+    "type": "rom-hack",
     "title": "exchange-test-mod",
     "summary": "Describe your mod in one sentence.",
     "categories": ["other"],
